@@ -1,5 +1,5 @@
 {
-    "name": "ekouk/module-imagecleaner",
+    "name": "ekouk/imagecleaner",
     "description": "Removes unused images from pub/media/catalog",
     "type": "magento2-module",
     "license": "proprietary",
