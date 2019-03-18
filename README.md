@@ -20,13 +20,13 @@ Add the following to your Magento2 composer.json repositories section:-
 ```
 Then run
 ```
-php composer.phar require ekouk/imagecleaner "*"
+php composer.phar require ekouk/imagecleaner "dev-master"
 ```
 
 or add
 
 ```
-"ekouk/imagecleaner": "*"
+"ekouk/imagecleaner": "dev-master"
 ```
 
 to the require section of your `composer.json` file and run ``composer install``
