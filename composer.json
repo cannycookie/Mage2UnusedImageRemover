@@ -1,25 +1,22 @@
 {
-  "name": "ekouk/imagecleaner",
-  "description": "Removes unused images from mage2 catalog file system",
-  "require": {
-    "magento/magento-composer-installer": "*"
-  },
-  "type": "magento2-module",
-  "version": "1.0.0",
-  "extra": {
-    "map": [
-      [
-        "*",
-        "EkoUK/ImageCleaner"
-      ]
-    ]
-  },
-  "authors": [
-    {
-      "name": "Eko UK Limited",
-      "homepage": "https://www.ekouk.com/",
-      "role": "Developer"
+    "name": "ekouk/imagecleaner",
+    "description": "Removes unused images from pub/media/catalog",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "support@ekouk.com",
+            "name": "Eko UK Limited"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "EkoUK\\ImageCleaner\\": ""
+        }
     }
-  ]
-
 }
