@@ -268,7 +268,7 @@ class Imageclean extends Command
      */
     protected function configure()
     {
-        $this->setName("ekouk:imageclean");
+        $this->setName("ekouk:cleanimages");
         $this->setDescription("Removes unused images from pub/media/catalog");
         $this->setDefinition([
             new InputOption(self::DELETE_MODE, "-d", InputOption::VALUE_NONE, "Delete Mode")
