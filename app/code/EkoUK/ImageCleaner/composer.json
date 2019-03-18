@@ -1,0 +1,22 @@
+{
+    "name": "ekouk/module-imagecleaner",
+    "description": "Removes unused images from pub/media/catalog",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "support@ekouk.com",
+            "name": "Eko UK Limited"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "EkoUK\\ImageCleaner\\": ""
+        }
+    }
+}
