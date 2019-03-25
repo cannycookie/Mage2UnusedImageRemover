@@ -126,16 +126,15 @@ class Imageclean extends Command
         return $this->db->getTables('catalog_product_flat_%%');
     }
 
-    private function getColumnFromTable($column,$table)
-    {
-        $sql = "SELECT $column FROM $table";
-        return $this->db->fetchCol($sql);
-    }
-
     private function getGalleryImages()
     {
-        $table = $this->db->getTableName('catalog_product_entity_media_gallery');
-        $sql = "SELECT value FROM $table";
+        return $this->getColumnFromTable('value','catalog_product_entity_media_gallery');
+    }
+
+    private function getColumnFromTable($column,$table)
+    {
+        $table = $this->db->getTableName($table);
+        $sql = "SELECT $column FROM $table";
         return $this->db->fetchCol($sql);
     }
 
