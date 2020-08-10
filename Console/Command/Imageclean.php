@@ -35,6 +35,7 @@ class Imageclean extends Command
 {
 
     const DELETE_MODE = "Delete Mode";
+    const LIST_MODE = "List Mode";    
     const ALLOWED_FILE_TYPES = ['jpg','jpeg','png'];
 
     protected $io;
@@ -67,6 +68,7 @@ class Imageclean extends Command
     ) {
 
         $this->deleteMode = $input->getOption(self::DELETE_MODE);
+        $this->listMode = $input->getOption(self::LIST_MODE);
         $this->imagesPath = $this->getCatalogDir();
         $this->db         = $this->resourceConnection->getConnection();
 
@@ -85,6 +87,9 @@ class Imageclean extends Command
 
         } else {
             $output->writeln("Test Mode Only - Nothing deleted");
+            if ($this->listMode) {
+                $this->listDeleteList($deleteList);
+            }
         }
 
 
@@ -262,6 +267,15 @@ class Imageclean extends Command
             unlink( $deleteFile );
         }
     }
+
+    private function listDeleteList($deleteList){
+        echo "Files marked for deletion:\n";
+        foreach( $deleteList as $deleteFile ) {
+            echo "$deleteFile\n";
+        }
+    }
+
+
     /**
      * {@inheritdoc}
      */
@@ -270,7 +284,8 @@ class Imageclean extends Command
         $this->setName("ekouk:cleanimages");
         $this->setDescription("Removes unused images from pub/media/catalog");
         $this->setDefinition([
-            new InputOption(self::DELETE_MODE, "-d", InputOption::VALUE_NONE, "Delete Mode")
+            new InputOption(self::DELETE_MODE, "-d", InputOption::VALUE_NONE, "Delete Mode"),
+            new InputOption(self::LIST_MODE, "-l", InputOption::VALUE_NONE, "List Mode")
         ]);
         parent::configure();
     }
