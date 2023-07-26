@@ -33,7 +33,7 @@ use Magento\Framework\App\ResourceConnection;
 
 class Imageclean extends Command
 {
-
+    const WHITE_LIST = ['/placeholder'];
     const DELETE_MODE = "Delete Mode";
     const LIST_MODE = "List Mode";    
     const ALLOWED_FILE_TYPES = ['jpg','jpeg','png'];
@@ -77,8 +77,8 @@ class Imageclean extends Command
         $output->writeln("Found ".count($localImages)." local image files");
 
         $dbImages = $this->getImagesFromDatabase();
-
-        $deleteList = $this->createListToDelete($localImages,$dbImages);
+        $fullyDeleteList = $this->createListToDelete($localImages,$dbImages);
+        $deleteList = $this->removeWhitelistEntities($fullyDeleteList); 
 
         if($this->deleteMode){
             $output->writeln("Deleting Files");
@@ -212,7 +212,6 @@ class Imageclean extends Command
     }
 
     private function createListToDelete($localImages,$dbImages){
-
         $dbImageFlip = array_flip( $dbImages );
         $deleteList = array();
         $deleteSize = 0;
@@ -273,6 +272,20 @@ class Imageclean extends Command
         foreach( $deleteList as $deleteFile ) {
             echo "$deleteFile\n";
         }
+    }
+
+    private function removeWhitelistEntities ( $deleteList ) {
+        $whiteList = self::WHITE_LIST; 
+        
+        foreach( $whiteList as $keyWord) {
+            foreach ($deleteList as $key => $deleteFilePath) {
+                if (str_contains($deleteFilePath, $keyWord)) {
+                    unset($deleteList[$key]);
+                }
+            }
+        } 
+        
+        return $deleteList;
     }
 
 
